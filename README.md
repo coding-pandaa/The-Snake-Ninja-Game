@@ -15,3 +15,8 @@ Made a basic snake game using HTML, CSS, JS along with sound effects. The game w
 ![image info](./screenshot/3.png)
 
 ![image info](./screenshot/4.png)
+
+
+## Note
+
+Further suggestions are always welcomed.

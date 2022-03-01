@@ -16,11 +16,14 @@
     width: 90vmin;
     height: 92vmin;
     margin-left:25%;
-    border: solid 2px black;
+    border: solid 2px blue;
     display:grid;
     grid-template-rows: repeat(18,1fr);
     grid-template-columns: repeat(18,1fr);
-
+    border-radius: 10px;
+    padding: 1px;
+    -webkit-box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
+    -moz-box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
 
 }
 .head{
@@ -40,17 +43,41 @@
     border: .2vmin solid black;
     border-radius: 20px;
 }
-#scoreBox{
-    position: absolute;
-    top:9px;
-    right: 200px;
-    font-size: 30px;
-    font-family: 'Indie Flower', cursive, bold;
+
+#scoreCard{
+  position: absolute;
+  top: 25px;
+  right: 100px;
+  background: linear-gradient(skyblue,white);
+  font-size: 30px;
+  font-family: 'Indie Flower', cursive, bold;
+  border-radius: 8px;
+  border: solid 2px darkgreen;
+  padding: 15px;
+  -webkit-box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
+  -moz-box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
+
 }
-#highscoreBox{
-    position: absolute;
-    top:35px;
-    right: 170px;
-    font-size: 30px;
-    font-family: 'Indie Flower', cursive, bold;
+#headerLogo{
+  height: 80px;
+  width: 280px;
+  position: absolute;
+  left: 20px;
+  top: 25px;
+}
+
+#aboutCard{
+  position: absolute;
+  left: 20px;
+  top: 190px;
+  width: 200px;
+  font-family: 'Indie Flower', cursive, bold;
+  color: #00008B;
+  font-size: 18px;
+  border: 2px solid #00008B;
+  border-radius: 8px;
+  padding-left: 45px;
+  padding-right: 45px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }

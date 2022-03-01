@@ -1,19 +1,27 @@
 //Game Contraints & variables
 
+
 let inputDir = {x: 0, y:0};
 const foodSound=new Audio('music/food.mp3');
 const gameOverSound=new Audio('music/gameover.mp3');
-const moveSound = new Audio('music/move.mp3');
-const musicSound = new Audio('music/bg_sound.mp3');
-let speed=3;
+const moveSound =new Audio('music/move.mp3');
+const musicSound =new Audio('music/bg_sound.mp3');
+let speed=2;
 let score=0;
 let lastPaintTime = 0;
+
+let [A,B,C,D]=getFourUniqueVal();
+
 let snakeArr=[
-    {x:13,y:15}
+    {x:A, y:B}
 ]
-food = {x:6,y:5};
+food = {x:C, y:D};
 
 
+
+
+
+//customAlertGameStart();
 
 //Game functions
 
@@ -26,8 +34,9 @@ function main(ctime)
         return;
     }
     lastPaintTime = ctime;
+    runOnce();
     gameEngine();
-    
+
 }
 function isCollide(snake)
 {
@@ -44,20 +53,26 @@ function isCollide(snake)
     {
         return true;
     }
-    
+
 }
 function gameEngine()
 {
-    //Part1: Updating the snake array & food 
+    //Part1: Updating the snake array & food
+
+    let [A,B,C,D]=getFourUniqueVal();
+
     if(isCollide(snakeArr))
     {
         gameOverSound.play();
         musicSound.pause();
         inputDir = {x:0,y:0};
-        alert("GameOver. Press any key to play again!");
-        snakeArr=[{x:13,y:15}];
+        //alert("GameOver. Press any key to play again!");
+        customAlertGameOver();
+        snakeArr=[{x:A,y:B}];
+        food={x:C, y:D};
         musicSound.play();
         score=0;
+        speed=2;
 
     }
     musicSound.play();
@@ -66,6 +81,9 @@ function gameEngine()
     {
         foodSound.play();
         score += 1;
+        if (score%3==0){
+          speed=speed+0.5;
+        }
         if(score>highscoreval)
         {
             highscoreval=score;
@@ -75,12 +93,13 @@ function gameEngine()
         }
         scoreBox.innerHTML="Score: "+score;
         snakeArr.unshift({x:snakeArr[0].x + inputDir.x, y: snakeArr[0].y + inputDir.y});
-        const a= 1;
-        const b= 17;
-        food = {x: Math.round(a+ (b-a)*Math.random()),y:Math.round(a+(b-a)*Math.random())}
+        //const a= 1;
+        //const b= 17;
+        //food = {x: Math.round(a+ (b-a)*Math.random()),y:Math.round(a+(b-a)*Math.random())}
+        food = {x:C,y:D}
     }
 
-    //Moving the snake 
+    //Moving the snake
     for(let i=snakeArr.length-2;i>=0;i--)
     {
 
@@ -99,7 +118,7 @@ function gameEngine()
         snakeElement = document.createElement('div');
         snakeElement.style.gridRowStart = e.y;
         snakeElement.style.gridColumnStart = e.x;
-        
+
         if(index==0)
         {
             snakeElement.classList.add('head');
@@ -150,18 +169,68 @@ window.addEventListener('keydown',e=>{
             console.log("ArrowDown");
             inputDir.x= 0;
             inputDir.y= 1 ;
-            break; 
+            break;
         case "ArrowLeft":
             console.log("ArrowLeft");
             inputDir.x= -1;
             inputDir.y= 0;
-            break; 
+            break;
         case "ArrowRight":
             console.log("ArrowRight");
             inputDir.x= 1;
             inputDir.y= 0;
-            break; 
+            break;
         default:
             break;
     }
 });
+
+
+function getRandomVal() {
+  return Math.floor((Math.random() * 17) + 1);
+}
+
+
+function getFourUniqueVal(){
+  let a,b,c,d;
+  while (true) {
+    a=getRandomVal();
+    b=getRandomVal();
+    c=getRandomVal();
+    d=getRandomVal();
+    if (a!=b && b!=c && c!=d){
+      break;
+    }
+  }
+  return [a,b,c,d];
+}
+
+function customAlertGameOver() {
+  cuteAlert({
+  type: "info",
+  title: "Game Over",
+  message: "GameOver. Press any key to play again!",
+  buttonText: "Okay"
+}).then(() => {
+  // do something
+})
+}
+
+function customAlertGameStart() {
+  cuteAlert({
+  type: "success",
+  title: "Game Start",
+  message: "Starting the Game.",
+  buttonText: "Okay"
+})
+}
+
+var runOnce = (function() {
+    var executed = false;
+    return function() {
+        if (!executed) {
+            executed = true;
+            customAlertGameStart();
+        }
+    };
+})();

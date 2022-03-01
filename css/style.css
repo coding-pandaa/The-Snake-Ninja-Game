@@ -48,9 +48,36 @@
   position: absolute;
   top: 25px;
   right: 100px;
+  background: linear-gradient(skyblue,white);
   font-size: 30px;
-  font-family: :'Indie Flower', cursive, bold;
+  font-family: 'Indie Flower', cursive, bold;
   border-radius: 8px;
   border: solid 2px darkgreen;
   padding: 15px;
+  -webkit-box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
+  -moz-box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
+
+}
+#headerLogo{
+  height: 80px;
+  width: 280px;
+  position: absolute;
+  left: 20px;
+  top: 25px;
+}
+
+#aboutCard{
+  position: absolute;
+  left: 20px;
+  top: 190px;
+  width: 200px;
+  font-family: 'Indie Flower', cursive, bold;
+  color: #00008B;
+  font-size: 18px;
+  border: 2px solid #00008B;
+  border-radius: 8px;
+  padding-left: 45px;
+  padding-right: 45px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }

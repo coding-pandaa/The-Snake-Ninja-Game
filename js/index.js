@@ -1,5 +1,6 @@
 //Game Contraints & variables
 
+
 let inputDir = {x: 0, y:0};
 const foodSound=new Audio('music/food.mp3');
 const gameOverSound=new Audio('music/gameover.mp3');
@@ -18,6 +19,10 @@ food = {x:C, y:D};
 
 
 
+
+
+//customAlertGameStart();
+
 //Game functions
 
 function main(ctime)
@@ -29,6 +34,7 @@ function main(ctime)
         return;
     }
     lastPaintTime = ctime;
+    runOnce();
     gameEngine();
 
 }
@@ -60,7 +66,8 @@ function gameEngine()
         gameOverSound.play();
         musicSound.pause();
         inputDir = {x:0,y:0};
-        alert("GameOver. Press any key to play again!");
+        //alert("GameOver. Press any key to play again!");
+        customAlertGameOver();
         snakeArr=[{x:A,y:B}];
         food={x:C, y:D};
         musicSound.play();
@@ -197,3 +204,33 @@ function getFourUniqueVal(){
   }
   return [a,b,c,d];
 }
+
+function customAlertGameOver() {
+  cuteAlert({
+  type: "info",
+  title: "Game Over",
+  message: "GameOver. Press any key to play again!",
+  buttonText: "Okay"
+}).then(() => {
+  // do something
+})
+}
+
+function customAlertGameStart() {
+  cuteAlert({
+  type: "success",
+  title: "Game Start",
+  message: "Starting the Game.",
+  buttonText: "Okay"
+})
+}
+
+var runOnce = (function() {
+    var executed = false;
+    return function() {
+        if (!executed) {
+            executed = true;
+            customAlertGameStart();
+        }
+    };
+})();
